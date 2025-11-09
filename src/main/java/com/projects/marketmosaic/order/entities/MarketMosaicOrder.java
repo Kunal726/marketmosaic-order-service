@@ -1,5 +1,6 @@
 package com.projects.marketmosaic.order.entities;
 
+import com.projects.marketmosaic.order.dto.StatusTimeline;
 import com.projects.marketmosaic.order.enums.OrderStatus;
 import com.projects.marketmosaic.order.enums.PaymentMode;
 import jakarta.persistence.*;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -45,5 +47,9 @@ public class MarketMosaicOrder {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem> items;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "order_timeline", joinColumns = @JoinColumn(name = "order_id"))
+    private List<StatusTimeline> timeline = new ArrayList<>();
 
 }

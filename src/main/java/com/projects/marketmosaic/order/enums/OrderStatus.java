@@ -1,10 +1,12 @@
 package com.projects.marketmosaic.order.enums;
 
 public enum OrderStatus {
-    PENDING,
+    CREATED,
     PLACED,
-    PROCESSING,
     SHIPPED,
     DELIVERED,
-    CANCELLED
+    CANCELLED,
+    RETURN_REQUESTED,
+    RETURNED,
+    FAILED
 }
